@@ -7,12 +7,13 @@ from heapq import nlargest
 import spacy
 
 # Download necessary NLTK data
-nltk.download('punkt')
+nltk.download('punkt_tab')
 nltk.download('stopwords')
 
 # Load SpaCy language model
 nlp = spacy.load('en_core_web_sm')
 
+# check
 text = "Hello world! This is a test to verify NLTK setup."
 print(sent_tokenize(text))
 
@@ -50,13 +51,13 @@ def summarize_text(text, summary_ratio=0.3):
 
 # Streamlit app layout
 st.title("English Text Summarizer")
-st.write("Paste your text below ⬇️")
+st.write("I will summarize your text 🤓")
 
 # Text input
 text_input = st.text_area("Enter Text to Summarize", height=300)
 
 # Slider for summary ratio
-summary_ratio = st.slider("Summary Ratio (0.1 = very short, 0.5 = longer)", 0.1, 0.5, 0.3, step=0.1)
+summary_ratio = st.slider("Summary Ratio (from very short to longer)", 0.1, 0.5, 0.3, step=0.1)
 
 # Summarize button
 if st.button("Summarize"):
@@ -67,5 +68,7 @@ if st.button("Summarize"):
             summary = summarize_text(text_input, summary_ratio)
         st.success("Summary:")
         st.write(summary)
+
+# streamlit run c:/Users/kasht/OneDrive/Documents/GitHub/summary-app/app.py
 
 
