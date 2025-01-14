@@ -5,13 +5,18 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from string import punctuation
 from heapq import nlargest
 import spacy
+from spacy.cli import download
 
 # Download necessary NLTK data
 nltk.download('punkt_tab')
 nltk.download('stopwords')
 
 # Load SpaCy language model
-nlp = spacy.load('en_core_web_sm')
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
 
 # check
 text = "Hello world! This is a test to verify NLTK setup."
